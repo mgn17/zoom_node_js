@@ -1,11 +1,11 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
-const PORT = process.env.PORT || 9000;
 const myPeer = new Peer(undefined, {
-    port: PORT
+    secure: true,
+    host: 'https://zoom-nodejs.onrender.com',
+    port: '443',
 
 })
-
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
