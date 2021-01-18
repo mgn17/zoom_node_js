@@ -1,9 +1,11 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
+const PORT = process.env.PORT || 9000;
 const myPeer = new Peer(undefined, {
-    port: 9000
+    port: PORT
 
 })
+
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
