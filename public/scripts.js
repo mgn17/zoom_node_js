@@ -1,7 +1,7 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
-    host: '/',
+    host: 'https://zoom-nodejs.onrender.com/',
     port: '443'
 })
 const myVideo = document.createElement('video')
