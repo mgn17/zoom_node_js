@@ -1,9 +1,11 @@
 const express=require('express')
 const app=express();
-const {v4: uuidv4} = require("uuid")
+const {v4: uuidV4} = require("uuid")
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
 
-app.set('view engine', 'hbs')
-
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
 app.get("/", (req, res) => {
     res.render("Login");
 })
@@ -18,19 +20,31 @@ app.post("/signUp", (req, res) => {
 })
 
 app.post("/room", (req, res) => {
-    res.render('room', {roomId: req.params.room})
+    res.render('room')
 })
 
 app.post("/meeting", (req, res) => {
-    res.render("meeting")
+    res.redirect(`${uuidV4()}`)
+})
+
+app.get('/:joinMeet', (req, res) => {
+    res.render("joinMeet", {roomId: req.params.joinMeet})
+})
+
+
+io.on('connection', socket => {
+    socket.on('join-room', (roomId, userId) => {
+        socket.join(roomId)
+        socket.to(roomId).broadcast.emit("user-connected", userId)
+
+        socket.on('disconnect', () =>{
+            socket.to(roomId).broadcast.emit('user-disconnected', userId)
+        })
+    })
 })
 
 
 
 
 
-
-
-app.listen(3000, () =>{
-    console.log("listening on 3000")
-});
+server.listen(3000)
