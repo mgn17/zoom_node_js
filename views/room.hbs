@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Room Zoom NodeJS</title>
+</head>
+
+<body>
+    <button onclick="document.getElementById('meeting').style.visibility='visible'; document.getElementById('join').style.visibility='visible'">Join Meeting</button>
+
+
+    <form action="/meeting" method="POST">
+        <br>
+        <input type="submit" value="Create Meeting">
+    </form>
+
+
+    <br>
+    <br>
+
+    <form action="/meeting" method="POST">
+        <label>
+            <input id="meeting" type="text" style="visibility: hidden" placeholder="Enter meeting ID">
+        </label>
+        <input id="join" style="visibility: hidden" type="submit" placeholder="connect">
+    </form>
+</body>
+
+
+</html>

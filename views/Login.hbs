@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login Zoom NodeJS</title>
+</head>
+<body>
+<form id="loginForm" action="/room" method="POST">
+    <label>
+        <input id="user" onchange="document.getElementById('user').value=document.getElementById('user').value" type="text" placeholder="Username or Email">
+    </label>
+    <label>
+        <input id="password" onchange="document.getElementById('password').value=document.getElementById('password').value" type="password" placeholder="Password">
+    </label>
+    <input id="login" type="submit" value="Login">
+</form>
+<br>
+<button id="toSign" onclick="signUp()" > Sing Up instead</button>
+
+<form action="/room" method="POST">
+    <label>
+        <input id="newUser" onchange="document.getElementById('newUser').value=document.getElementById('newUser').value" style="visibility: hidden" type="email" placeholder="Enter Email">
+    </label>
+    <label>
+        <input id="newPassword" style="visibility: hidden" onchange="document.getElementById('newPassword').value=document.getElementById('newPassword').value" type="password" placeholder="Enter Password">
+    </label>
+    <label>
+        <input id="RePassword" style="visibility: hidden" onchange="document.getElementById('RePassword').value=document.getElementById('RePassword').value" type="password" placeholder="Enter Password Again">
+    </label>
+    <input id="signUp" style="visibility: hidden" type="submit" value="SignUp">
+</form>
+<button id="toLog" style="visibility: hidden" onclick="login()" > Back to Login</button>
+
+
+
+
+<script>
+    function authentication(){
+        var user=document.getElementById('user').value
+        var pass=document.getElementById('password').value
+        if (user==="" || pass===""){
+            console.log("Username or password cannot be empty");
+        }else{
+        }
+    }
+
+    function signUp(){
+        document.getElementById("newUser").style.visibility= "visible";
+        document.getElementById("newPassword").style.visibility= "visible";
+        document.getElementById("RePassword").style.visibility= "visible";
+        document.getElementById("signUp").style.visibility= "visible";
+        document.getElementById("toLog").style.visibility= "visible";
+
+        document.getElementById("user").style.visibility= "hidden";
+        document.getElementById("password").style.visibility= "hidden";
+        document.getElementById("login").style.visibility= "hidden";
+        document.getElementById("toSign").style.visibility= "hidden";
+
+    }
+
+    function login(){
+        document.getElementById("newUser").style.visibility= "hidden";
+        document.getElementById("newPassword").style.visibility= "hidden";
+        document.getElementById("RePassword").style.visibility= "hidden";
+        document.getElementById("signUp").style.visibility= "hidden";
+        document.getElementById("toLog").style.visibility= "hidden";
+
+        document.getElementById("user").style.visibility= "visible";
+        document.getElementById("password").style.visibility= "visible";
+        document.getElementById("login").style.visibility= "visible";
+        document.getElementById("toSign").style.visibility= "visible";
+
+    }
+</script>
+</body>
+
+
+
+
+
+</html>
