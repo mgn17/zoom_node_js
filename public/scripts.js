@@ -2,8 +2,8 @@ const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
     secure: true,
-    host: 'https://zoom-nodejs.onrender.com',
-    port: '443',
+    host: '/',
+    port: '3001',
 
 })
 let recorder = RecordRTC(stream, {
