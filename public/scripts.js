@@ -1,9 +1,8 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
-    secure: true,
-    host: '/',
-    port: '3001',
+    host: 'nodejs-videocall-blackbox.herokuapp.com/',
+    port: '9000',
 
 })
 let recorder = RecordRTC(stream, {
