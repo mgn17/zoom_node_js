@@ -1,6 +1,6 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
-const myPeer = new Peer("A723456", {
+const myPeer = new Peer(undefined, {
     host: 'nodejs-videocall-blackbox.herokuapp.com/',
     port: '9000'
 
