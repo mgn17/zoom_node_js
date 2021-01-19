@@ -3,13 +3,45 @@
 <head>
     <meta charset="utf-8">
     <title>Meeting Zoom NodeJS</title>
-    <script>
-        ROOM_ID = "<%=roomId%>"
-        console.log(ROOM_ID)
-    </script>
+
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script src="socket.io/socket.io.js" defer></script>
     <script src="scripts.js" defer></script>
+    <script src="https://cdn.webrtc-experiment.com/MediaStreamRecorder.js"> </script>
+    <script>
+        const mediaRecorder = require("msr");
+
+        function start() {
+            document.getElementById("download").style.visibility="visible"
+            var mediaConstraints = {
+                audio: true
+            };
+
+            navigator.getUserMedia(mediaConstraints, onMediaSuccess, onMediaError);
+
+            function onMediaSuccess(stream) {
+                var mediaRecorder = new MediaStreamRecorder(stream);
+                mediaRecorder.mimeType = 'audio/wav'; // check this line for audio/wav
+                mediaRecorder.ondataavailable = function (blob) {
+                    var blobURL = URL.createObjectURL(blob);
+                    document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
+                };
+                mediaRecorder.start();
+            }
+
+            function onMediaError(e) {
+                console.error('media error', e);
+            }
+        }
+
+        function download(){
+            document.getElementById("download").style.visibility="hidden"
+            mediaRecorder.stop();
+            mediaRecorder.save(blob, 'audio.wav');
+
+        }
+    </script>
+
     <style>
         #video-grid {
             display: grid;
@@ -27,6 +59,8 @@
 
 <body>
     <div id="video-grid"></div>
+    <button id="record" onclick=start()>Record</button>
+    <button id="download" style="visibility: hidden" onclick=download()>Download</button>
 </body>
 
 
