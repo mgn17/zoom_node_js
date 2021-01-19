@@ -1,6 +1,6 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
-const myPeer = new Peer("abc123", {
+const myPeer = new Peer(undefined, {
     port: '443'
 
 })
