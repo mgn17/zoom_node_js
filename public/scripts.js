@@ -5,6 +5,7 @@ const myPeer = new Peer({
 
 })
 
+
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
@@ -19,6 +20,8 @@ navigator.mediaDevices.getUserMedia({
         const video = document.createElement('video')
         call.on('stream', userVideoStream => {
             addVideoStream(video, userVideoStream)
+            this.mediaRecorder = new MediaStreamRecorder(stream, {
+            })
         })
     })
 

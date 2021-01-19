@@ -9,12 +9,17 @@
     <script src="scripts.js" defer></script>
     <script src="https://cdn.webrtc-experiment.com/MediaStreamRecorder.js"> </script>
     <script>
+        ROOM_ID = "<%=roomId%>"
+        console.log(ROOM_ID)
+    </script>
+    <script>
         const mediaRecorder = require("msr");
 
         function start() {
             document.getElementById("download").style.visibility="visible"
             var mediaConstraints = {
-                audio: true
+                audio: true,
+                video: true
             };
 
             navigator.getUserMedia(mediaConstraints, onMediaSuccess, onMediaError);
