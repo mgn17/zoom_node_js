@@ -2,7 +2,7 @@ const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
     secure: true,
-    host: 'zoom-nodejs.onrender.com/',
+    host: 'nodejs-videocall-blackbox.herokuapp.com/',
     port: '443'
 
 })
