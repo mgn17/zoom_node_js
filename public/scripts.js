@@ -13,7 +13,6 @@ let recorder = RecordRTC(stream, {
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
-const number=0
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
