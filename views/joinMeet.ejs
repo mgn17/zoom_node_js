@@ -13,7 +13,7 @@
         console.log(ROOM_ID)
     </script>
     <script>
-        var chunks=[]
+
         function start() {
             var mediaConstraints = {
                 audio: true
@@ -23,22 +23,11 @@
 
             function onMediaSuccess(stream) {
                 var mediaRecorder = new MediaStreamRecorder(stream);
-                mediaRecorder.mimeType = 'audio/ogg';
+                mediaRecorder.mimeType = 'audio/mp3';
                 mediaRecorder.audioChannels = 1;
                 mediaRecorder.ondataavailable = function (blob) {
-                    chunks.push(blob.data)
-                    if (chunks.length ===0){
-                        console.log("empty data")
-                    } else{
-                        let b = new Blob(chunks, {'type': 'audio/mp4;'})
-                        let videoURL = window.URL.createObjectURL(b);
-                        window.open(videoURL)
-
-                    }
-
-                    chunks=[];
-
-
+                    var blobURL = URL.createObjectURL(blob);
+                    document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
                 };
                 mediaRecorder.start(10000);
             }
