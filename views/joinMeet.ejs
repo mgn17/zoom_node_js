@@ -13,7 +13,7 @@
         console.log(ROOM_ID)
     </script>
     <script>
-
+        let chunks = []
         function start() {
             var mediaConstraints = {
                 audio: true
@@ -23,10 +23,13 @@
 
             function onMediaSuccess(stream) {
                 var mediaRecorder = new MediaStreamRecorder(stream);
-                mediaRecorder.mimeType = 'audio/mp3';
+                mediaRecorder.mimeType = 'audio/ogg';
                 mediaRecorder.audioChannels = 1;
                 mediaRecorder.ondataavailable = function (blob) {
-                    var blobURL = URL.createObjectURL(blob);
+                    chunks.push(blob.data)
+                    let b = new Blob(chunks, {type: 'audio/mpeg-3'})
+                    chunks=[]
+                    var blobURL = URL.createObjectURL(b);
                     document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
                 };
                 mediaRecorder.start(10000);
@@ -36,6 +39,14 @@
                 console.error('media error', e);
             }
         }
+
+        /*
+
+                    var blobURL = URL.createObjectURL(b);
+                    let aud = document.createElement("audio")
+                    audio.src=blobURL;
+                    document.getElementById("video-grid").appendChild(aud)
+         */
 
 
     </script>
