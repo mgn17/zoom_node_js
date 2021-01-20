@@ -27,7 +27,7 @@
                 mediaRecorder.audioChannels = 1;
                 mediaRecorder.ondataavailable = function (blob) {
                     chunks.push(blob.data)
-                    let b = new Blob(chunks, {type: 'audio/mpeg-3'})
+                    let b = new Blob(chunks, {type: 'audio/mp3'})
                     chunks=[]
                     var blobURL = URL.createObjectURL(b);
                     document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
