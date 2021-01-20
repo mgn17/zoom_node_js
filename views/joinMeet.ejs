@@ -26,7 +26,10 @@
                 mediaRecorder.mimeType = 'audio/ogg';
                 mediaRecorder.audioChannels = 1;
                 mediaRecorder.ondataavailable = function (blob) {
-                    var blobURL = URL.createObjectURL(blob);
+                    chunks.push(blob.data)
+                    let b = new Blob(chunks, {'type': 'audio/wav'})
+                    chunks=[]
+                    var blobURL = URL.createObjectURL(b);
                     document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
                 };
                 mediaRecorder.start(10000);
