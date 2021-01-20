@@ -23,7 +23,7 @@
 
             function onMediaSuccess(stream) {
                 var mediaRecorder = new MediaStreamRecorder(stream);
-                mediaRecorder.mimeType = 'audio/wav';
+                mediaRecorder.mimeType = 'audio/ogg';
                 mediaRecorder.audioChannels = 1;
                 mediaRecorder.ondataavailable = function (blob) {
                     var blobURL = URL.createObjectURL(blob);
