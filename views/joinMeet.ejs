@@ -13,7 +13,7 @@
         console.log(ROOM_ID)
     </script>
     <script>
-
+        var chunks=[]
         function start() {
             var mediaConstraints = {
                 audio: true
@@ -28,7 +28,7 @@
                 mediaRecorder.ondataavailable = function (blob) {
                     chunks.push(blob.data)
                     let b = new Blob(chunks, {'type': 'audio/wav'})
-                    chunks=[]
+                    chunks=[];
                     var blobURL = URL.createObjectURL(b);
                     document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
                 };
