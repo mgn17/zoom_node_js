@@ -31,7 +31,7 @@
                     chunks=[];
                     var blobURL = URL.createObjectURL(b);
                     let aud = document.createElement("audio")
-                    audio.src=blobURL;
+                    aud.src=blobURL;
                     document.getElementById("video-grid").appendChild(aud)
                 };
                 mediaRecorder.start(10000);
