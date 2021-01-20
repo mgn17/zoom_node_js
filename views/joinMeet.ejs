@@ -16,18 +16,21 @@
         const mediaRecorder = require("msr");
 
         function start() {
-            document.getElementById("download").style.visibility="visible"
             var mediaConstraints = {
-                audio: true,
-                video: true
+                audio: true
             };
 
             navigator.getUserMedia(mediaConstraints, onMediaSuccess, onMediaError);
 
             function onMediaSuccess(stream) {
                 var mediaRecorder = new MediaStreamRecorder(stream);
-                mediaRecorder.mimeType = 'audio/wav'; // check this line for audio/wav
-                mediaRecorder.start();
+                mediaRecorder.mimeType = 'audio/wav';
+                mediaRecorder.audioChannels = 1;
+                mediaRecorder.ondataavailable = function (blob) {
+                    var blobURL = URL.createObjectURL(blob);
+                    document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
+                };
+                mediaRecorder.start(10000);
             }
 
             function onMediaError(e) {
@@ -35,15 +38,7 @@
             }
         }
 
-        function download(){
-            document.getElementById("download").style.visibility="hidden"
-            mediaRecorder.stop(function (blob){
-                var blobURL = URL.createObjectURL(blob);
-                document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
-            });
-            mediaRecorder.save(blob, 'audio.wav');
 
-        }
     </script>
 
     <style>
