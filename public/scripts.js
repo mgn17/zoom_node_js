@@ -4,7 +4,7 @@ const myPeer = new Peer({
     port: '443'
 
 })
-
+const count=0
 
 const myVideo = document.createElement('video')
 myVideo.muted = true
@@ -53,6 +53,7 @@ function connectToNewUser(userId, stream) {
 
 function addVideoStream(video, stream) {
     video.srcObject = stream
+    video.id="video"+count
     video.addEventListener('loadedmetadata', () => {
         video.play()
     })
