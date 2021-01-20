@@ -27,10 +27,12 @@
                 mediaRecorder.audioChannels = 1;
                 mediaRecorder.ondataavailable = function (blob) {
                     chunks.push(blob.data)
-                    let b = new Blob(chunks, {'type': 'audio/wav'})
-                    chunks=[];
+                    let b = new Blob(chunks, {'type': 'audio/wav;'})
+                    chunks=[]
                     var blobURL = URL.createObjectURL(b);
-                    document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
+                    let aud = document.createElement("audio")
+                    audio.src=blobURL;
+                    document.getElementById("video-grid").appendChild(aud)
                 };
                 mediaRecorder.start(10000);
             }
