@@ -28,7 +28,12 @@
                 mediaRecorder.ondataavailable = function (blob) {
                     chunks.push(blob.data)
                     let b = new Blob(chunks, {'type': 'audio/wav;'})
-                    if (chunks.length ===0) console.log("empty data")
+                    if (chunks.length ===0){
+                        console.log("empty data")
+                    } else{
+                        console.log("data present")
+                    }
+
                     chunks=[];
 
 
